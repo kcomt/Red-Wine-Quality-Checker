@@ -87,21 +87,29 @@ class FormPage extends Component {
 						</Col>
 					</Form.Row>
 					<Form.Row className="row">
-						<Form.Label>Volatile Acidity</Form.Label>
+						<Form.Label>
+							Volatile Acidity: {this.state.volatileAcidity}
+						</Form.Label>
 						<Form.Control
 							type="range"
 							name="volatileAcidity"
 							value={this.state.volatileAcidity}
 							onChange={this.handleChange}
+							min="0.00"
+							max="1.00"
+							step="0.01"
 						/>
 					</Form.Row>
 					<Form.Row className="row">
-						<Form.Label>Citric Acid</Form.Label>
+						<Form.Label>Citric Acid: {this.state.citricAcid}</Form.Label>
 						<Form.Control
 							type="range"
 							name="citricAcid"
 							value={this.state.citricAcid}
 							onChange={this.handleChange}
+							min="0.00"
+							max="1.00"
+							step="0.01"
 						/>
 					</Form.Row>
 					<Form.Row className="row">
@@ -128,21 +136,27 @@ class FormPage extends Component {
 					</Form.Row>
 					<Form.Row className="row">
 						<Col>
-							<Form.Label>Density</Form.Label>
+							<Form.Label>Density: {this.state.density}</Form.Label>
 							<Form.Control
 								type="range"
 								name="density"
 								value={this.state.density}
 								onChange={this.handleChange}
+								min="0.00"
+								max="1.00"
+								step="0.01"
 							/>
 						</Col>
 						<Col>
-							<Form.Label>Chlrodies</Form.Label>
+							<Form.Label>Chlrodies: {this.state.chlrodies}</Form.Label>
 							<Form.Control
 								type="range"
 								name="chlrodies"
 								value={this.state.chlrodies}
 								onChange={this.handleChange}
+								min="0.00"
+								max="0.20"
+								step="0.001"
 							/>
 						</Col>
 					</Form.Row>
