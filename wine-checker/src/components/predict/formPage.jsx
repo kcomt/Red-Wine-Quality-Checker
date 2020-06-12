@@ -3,18 +3,23 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Row, Col, Grid, InputGroup } from "react-bootstrap";
 import "./formpage.css";
+import axios from "axios";
 
 class FormPage extends Component {
 	state = {
 		id: 1300,
-		fixedAcidityValue: "",
-		residualSugarValue: "",
-		totalSulfurValue: "",
-		phValue: "",
-		densityValue: "",
-		alcoholValue: "",
-		volatileValue: 20,
-		citricValue: 20,
+		fixedAcidity: "",
+		volatileAcidity: 0,
+		citricAcid: 0,
+		residualSugar: "",
+		chlrodies: 0,
+		totalSulfurDioxide: "",
+		density: 0,
+		ph: "",
+		alcohol: "",
+		quality: -10,
+
+		responsePOST: "None",
 	};
 
 	handleChange = (event) => {
@@ -25,6 +30,18 @@ class FormPage extends Component {
 		this.setState({
 			[name]: value,
 		});
+	};
+
+	submitForm = () => {
+		axios
+			.post("http://localhost:8080/data", this.state)
+			.then((resonse) => {
+				console.log(resonse);
+				this.setState({ responsePOST: resonse.data.quality + "/10" });
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	// Volatile Acidity 0-1
@@ -47,8 +64,8 @@ class FormPage extends Component {
 								<Form.Control
 									type="text"
 									placeholder="Value from 0 to 15"
-									name="fixedAcidityValue"
-									value={this.state.fixedAcidityValue}
+									name="fixedAcidity"
+									value={this.state.fixedAcidity}
 									onChange={this.handleChange}
 								/>
 							</InputGroup>
@@ -62,8 +79,8 @@ class FormPage extends Component {
 								<Form.Control
 									type="text"
 									placeholder="Value from 0 to 15"
-									name="residualSugarValue"
-									value={this.state.residualSugarValue}
+									name="residualSugar"
+									value={this.state.residualSugar}
 									onChange={this.handleChange}
 								/>
 							</InputGroup>
@@ -73,8 +90,8 @@ class FormPage extends Component {
 						<Form.Label>Volatile Acidity</Form.Label>
 						<Form.Control
 							type="range"
-							name="volatileValue"
-							value={this.state.volatileValue}
+							name="volatileAcidity"
+							value={this.state.volatileAcidity}
 							onChange={this.handleChange}
 						/>
 					</Form.Row>
@@ -82,8 +99,8 @@ class FormPage extends Component {
 						<Form.Label>Citric Acid</Form.Label>
 						<Form.Control
 							type="range"
-							name="citricValue"
-							value={this.state.citricValue}
+							name="citricAcid"
+							value={this.state.citricAcid}
 							onChange={this.handleChange}
 						/>
 					</Form.Row>
@@ -93,8 +110,8 @@ class FormPage extends Component {
 							<Form.Control
 								type="text"
 								placeholder="Enter a Whole Number"
-								name="totalSulfurValue"
-								value={this.state.totalSulfurValue}
+								name="totalSulfurDioxide"
+								value={this.state.totalSulfurDioxide}
 								onChange={this.handleChange}
 							/>
 						</Col>
@@ -103,20 +120,31 @@ class FormPage extends Component {
 							<Form.Control
 								type="text"
 								placeholder="Value from 2.00 to 4.00"
-								name="phValue"
-								value={this.state.phValue}
+								name="ph"
+								value={this.state.ph}
 								onChange={this.handleChange}
 							/>
 						</Col>
 					</Form.Row>
 					<Form.Row className="row">
-						<Form.Label>Density</Form.Label>
-						<Form.Control
-							type="range"
-							name="densityValue"
-							value={this.state.densityValue}
-							onChange={this.handleChange}
-						/>
+						<Col>
+							<Form.Label>Density</Form.Label>
+							<Form.Control
+								type="range"
+								name="density"
+								value={this.state.density}
+								onChange={this.handleChange}
+							/>
+						</Col>
+						<Col>
+							<Form.Label>Chlrodies</Form.Label>
+							<Form.Control
+								type="range"
+								name="chlrodies"
+								value={this.state.chlrodies}
+								onChange={this.handleChange}
+							/>
+						</Col>
 					</Form.Row>
 					<Form.Row className="row">
 						<Col>
@@ -128,8 +156,8 @@ class FormPage extends Component {
 								<Form.Control
 									type="text"
 									placeholder="Value usually from 5 to 20"
-									name="alcoholValue"
-									value={this.state.alcoholValue}
+									name="alcohol"
+									value={this.state.alcohol}
 									onChange={this.handleChange}
 								/>
 							</InputGroup>
@@ -137,13 +165,18 @@ class FormPage extends Component {
 					</Form.Row>
 				</Form>
 				<div className="centerdiv">
-					<Button variant="primary" className="button">
+					<Button
+						variant="primary"
+						className="button"
+						onClick={this.submitForm}
+					>
 						Taste
 					</Button>{" "}
 					<h6 className="text">
 						Put some values in and I will predict the quality of the wine!
 					</h6>
-					<span>{this.state.fixedAcidityValue}</span>
+					<h6 className="textdiff">The Quality of the Wine is: </h6>
+					<span className="textResponse">{this.state.responsePOST}</span>
 				</div>
 			</React.Fragment>
 		);
