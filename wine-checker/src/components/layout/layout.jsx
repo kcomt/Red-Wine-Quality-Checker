@@ -12,8 +12,9 @@ class Layout extends Component {
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="mr-auto">
-							<Nav.Link href="home">Info</Nav.Link>
+							<Nav.Link href="info">Info</Nav.Link>
 							<Nav.Link href="predict">Predict/Taste</Nav.Link>
+							<Nav.Link href="dataset">Data-Set</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>

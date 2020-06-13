@@ -12,13 +12,13 @@ class FormPage extends Component {
 		volatileAcidity: 0,
 		citricAcid: 0,
 		residualSugar: "",
-		chlrodies: 0,
+		chlorides: 0,
 		totalSulfurDioxide: "",
 		density: 0,
 		ph: "",
 		alcohol: "",
 		quality: -10,
-
+		k: "",
 		responsePOST: "None",
 	};
 
@@ -148,11 +148,11 @@ class FormPage extends Component {
 							/>
 						</Col>
 						<Col>
-							<Form.Label>Chlrodies: {this.state.chlrodies}</Form.Label>
+							<Form.Label>Chlorides: {this.state.chlorides}</Form.Label>
 							<Form.Control
 								type="range"
-								name="chlrodies"
-								value={this.state.chlrodies}
+								name="chlorides"
+								value={this.state.chlorides}
 								onChange={this.handleChange}
 								min="0.00"
 								max="0.20"
@@ -172,6 +172,21 @@ class FormPage extends Component {
 									placeholder="Value usually from 5 to 20"
 									name="alcohol"
 									value={this.state.alcohol}
+									onChange={this.handleChange}
+								/>
+							</InputGroup>
+						</Col>
+						<Col>
+							<Form.Label>K</Form.Label>
+							<InputGroup className="mb-2">
+								<InputGroup.Prepend>
+									<InputGroup.Text>#</InputGroup.Text>
+								</InputGroup.Prepend>
+								<Form.Control
+									type="text"
+									placeholder="Enter a Whole Number"
+									name="k"
+									value={this.state.k}
 									onChange={this.handleChange}
 								/>
 							</InputGroup>

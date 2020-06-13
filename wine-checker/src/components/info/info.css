@@ -1,0 +1,23 @@
+.styleTitle {
+	width: 200%;
+	height: 200%;
+	max-width: 400px;
+	margin: auto;
+	padding: 15px;
+}
+
+.stylePara {
+	width: 250%;
+	height: 250%;
+	max-width: 500px;
+	margin: auto;
+	padding: 15px;
+}
+
+.stylePara2 {
+	width: 200%;
+	height: 200%;
+	max-width: 450px;
+	margin: auto;
+	padding: 15px;
+}
